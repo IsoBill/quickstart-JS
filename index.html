@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Веб-компоненты</title>
+  </head>
+  <body>
+    <h1>Демонстрация веб-компонента</h1>
+
+    <script>
+      const onLoad = (evt) => {
+        console.log('Компонент загружен:', evt.target.dataset.name);
+      };
+
+      const onError = (err) => {
+        console.error('Ошибка загрузки:', err);
+      };
+
+      const components = ['my-select'];
+
+      components.forEach((component) => {
+        const script = document.createElement('script');
+        script.src = `./${component}.js`;
+        script.dataset.name = component;
+        script.addEventListener('load', onLoad);
+        script.addEventListener('error', onError);
+        document.body.append(script);
+      });
+    </script>
+  </body>
+</html>
